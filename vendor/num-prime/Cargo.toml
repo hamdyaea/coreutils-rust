@@ -25,18 +25,8 @@ Generic and optimized primality test, factorization and various number theoretic
 """
 documentation = "https://docs.rs/num-prime"
 readme = "README.md"
-keywords = [
-    "bigint",
-    "mathematics",
-    "num",
-    "number-theory",
-    "primes",
-]
-categories = [
-    "algorithms",
-    "cryptography",
-    "science",
-]
+keywords = ["bigint", "mathematics", "num", "number-theory", "primes"]
+categories = ["algorithms", "cryptography", "science"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/uutils/num-prime"
 
@@ -46,10 +36,7 @@ all-features = true
 [features]
 big-int = ["dep:num-bigint"]
 big-table = []
-default = [
-    "big-int",
-    "big-table",
-]
+default = ["big-int", "big-table"]
 
 [lib]
 name = "num_prime"
