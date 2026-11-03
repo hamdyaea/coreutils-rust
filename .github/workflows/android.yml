@@ -29,6 +29,9 @@ env:
 
 jobs:
   test_android:
+    # The upstream emulator job needs runner/KVM resources not reliably
+    # available to forks; retain the workflow for upstream builds.
+    if: github.repository == 'uutils/coreutils'
     name: Test builds
     timeout-minutes: 90
     strategy:

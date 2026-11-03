@@ -1768,7 +1768,10 @@ fn render_nonprinting(bytes: &[u8], octal: bool) -> String {
                 });
             }
             0..=31 | 127 | 128..=255 => {
-                output.push_str(&format!("\\{byte:03o}"));
+                output.push('\\');
+                output.push(char::from(b'0' + ((byte >> 6) & 7)));
+                output.push(char::from(b'0' + ((byte >> 3) & 7)));
+                output.push(char::from(b'0' + (byte & 7)));
             }
             _ => output.push(char::from(byte)),
         }

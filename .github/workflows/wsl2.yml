@@ -48,7 +48,12 @@ jobs:
       shell: wsl-bash {0}
       run: |
         mkdir -p "$HOME/src"
-        curl -L https://github.com/uutils/coreutils/archive/${{ github.sha }}.tar.gz | tar -xzf - --strip-components=1 -C "$HOME/src"
+        # Use the actual repository: a fork's commit SHA is not available
+        # in the upstream uutils/coreutils source archive.
+        curl --fail --location --silent --show-error \
+          "https://github.com/${{ github.repository }}/archive/${{ github.sha }}.tar.gz" \
+          -o "$HOME/coreutils-source.tar.gz"
+        tar -xzf "$HOME/coreutils-source.tar.gz" --strip-components=1 -C "$HOME/src"
     - name: Install rust and nextest
       shell: wsl-bash {0}
       run: |

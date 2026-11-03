@@ -65,7 +65,9 @@ jobs:
 
   benchmarks:
     needs: detects-benchmarks
-    if: needs.detects-benchmarks.outputs.package != '[]'
+    # CodSpeed uploads require an organization-linked project; forks receive
+    # HTTP 401 and cannot publish measurements to the upstream project.
+    if: github.repository == 'uutils/coreutils' && needs.detects-benchmarks.outputs.package != '[]'
     name: Run ${{ matrix.type }} benchmarks for ${{ matrix.package }} (CodSpeed)
     runs-on: ubuntu-latest
     timeout-minutes: 90
