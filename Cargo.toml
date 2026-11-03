@@ -690,6 +690,12 @@ name = "uudoc"
 path = "src/bin/uudoc.rs"
 required-features = ["uudoc"]
 
+# Security backport: num-prime 0.7.0 requires vulnerable lru 0.16.x.
+# Use a local copy with lru >=0.18.5 until upstream updates its constraint.
+# See https://rustsec.org/advisories/RUSTSEC-2026-0253.html and issue #1.
+[patch.crates-io]
+num-prime = { path = "vendor/num-prime" }
+
 [profile.release]
 lto = "fat"
 panic = "abort"
